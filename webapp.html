@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fishing Lure Picker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            padding: 30px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #00796b;
+        }
+
+        textarea {
+            width: 300px;
+            height: 100px;
+            margin-top: 10px;
+            border-radius: 8px;
+            border: 1px solid #aaa;
+            padding: 10px;
+        }
+
+        button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background-color: #00796b;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #005f4c;
+        }
+
+        #result {
+            margin-top: 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: #004d40;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>🎣 Which Fishing Lure Should I Use?</h1>
+    <p>Enter your favorite lures, one per line:</p>
+    
+    <textarea id="lureInput" placeholder="e.g. Senko Worm&#10;Crankbait&#10;Spinnerbait"></textarea><br>
+    
+    <button onclick="pickLure()">Pick a Lure!</button>
+
+    <div id="result"></div>
+
+    <script>
+        function pickLure() {
+            const input = document.getElementById("lureInput").value.trim();
+            const lures = input.split("\n").map(lure => lure.trim()).filter(lure => lure !== "");
+            
+            if (lures.length === 0) {
+                document.getElementById("result").textContent = "Please enter at least one lure.";
+                return;
+            }
+
+            const randomIndex = Math.floor(Math.random() * lures.length);
+            const chosenLure = lures[randomIndex];
+
+            document.getElementById("result").textContent = `🎯 Try using: ${chosenLure}`;
+        }
+    </script>
+
+</body>
+</html>
